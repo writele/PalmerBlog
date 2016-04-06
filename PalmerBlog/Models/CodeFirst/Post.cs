@@ -23,6 +23,7 @@ namespace PalmerBlog.Models
         [Required]
         [AllowHtml]
         public string Content { get; set; }
+        public string Excerpt { get; set; }
         public string Slug { get; set; }
         public string MediaURL { get; set; }
         public bool Published { get; set; }

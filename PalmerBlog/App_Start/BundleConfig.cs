@@ -23,9 +23,16 @@ namespace PalmerBlog
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/plugins").Include(
+                      "~/Scripts/plugins.js",
+                      "~/Scripts/main.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/normalize.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/templatemo-style.css",
+                      "~/Content/main.css"));
         }
     }
 }

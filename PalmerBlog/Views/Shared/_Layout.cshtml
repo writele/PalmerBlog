@@ -3,43 +3,110 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Eleanor Palmer - Web Developer</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <div class="responsive-header visible-xs visible-sm">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="top-section">
+                        <div class="profile-content">
+                            <a href="index.html"><h3 class="profile-title">Eleanor Palmer</h3></a>
+                            <p class="profile-description">Web Developer</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("My Page", "MyPage", "Home")</li>
+            <a href="#" class="toggle-menu">Menu</a>
+            <div class="main-navigation responsive-menu">
+                <ul class="navigation">
+                    <li>
+                        @Html.ActionLink("Blog", "Index", "Posts")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Categories", "Index", "Categories")
+                        <ul>
+                            <li>Category</li>
+                            <li>Category</li>
+                            <li>Category</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Recent Posts
+                        <ul>
+                            <li>Post 1 Title</li>
+                            <li>Post 2 Title</li>
+                            <li>Post 3 Title</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Search</a>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- SIDEBAR -->
+    <div class="sidebar-menu hidden-xs hidden-sm">
+        <div class="top-section">
+            <a href="index.html"><h3 class="profile-title">Eleanor Palmer</h3></a>
+            <p class="profile-description">Web Developer</p>
+        </div> <!-- top-section -->
+        <div class="main-navigation">
+            <ul class="navigation">
+                <li>
+                    @Html.ActionLink("Blog", "Index", "Posts")
+                </li>
+                <li>
+                    @Html.ActionLink("Categories", "Index", "Categories")
+                    <ul>
+                        <li><a href="">Category</a></li>
+                        <li>Category</li>
+                        <li>Category</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Recent Posts</a>
+                        <ul>
+                            <li><a href="">Post Title 1</a></li>
+                            <li>Post 2 Title</li>
+                            <li>Post 3 Title</li>
+                        </ul>
+</li>
+                <li>
+                    <a href="#">Search</a>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div> <!-- .main-navigation -->
+    </div> <!-- .sidebar-menu -->
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="fluid-container">
+
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Eleanor Palmer</p>
+                </footer>
+            </div>
+        </div>
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/plugins")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

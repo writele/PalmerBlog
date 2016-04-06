@@ -1,0 +1,14 @@
+﻿.banner-bg {
+  padding: 260px 80px;
+  position: relative;
+  background: url("../img/coffee.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 2;
+}
+
+.content-wrapper {
+    background-color: #395451;
+    background-image: none;
+}

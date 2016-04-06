@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-section">
+                <!-- Blog Entries Column -->
+                <div class="col-md-8">
+
+                    <h1 class="page-header">
+                        Edit Blog Posts
+                    </h1>
+
+                    <h2>
+                        @Html.ActionLink("New Post", "Create", "Posts")
+                    </h2>
+                    <hr />
+                    @foreach (var post in Model)
+                    {
+                    <!-- First Blog Post -->
+                        <h2>
+                            <a href="@Url.Action("Details", "Posts", new { id = post.Id })">@post.Title</a>
+                        </h2>
+                        <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date by Ele</p>
+                        <hr>
+                        <p>@Html.Raw(@post.Content)</p>
+                        @Html.ActionLink("Read More", "Details", new { id = post.Id })
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        @Html.ActionLink("Edit", "Edit", new { id = post.Id })
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        @Html.ActionLink("Delete", "Delete", new { id = post.Id })
+
+                    }
+                </div>
+            </div>
+        </div> <!-- .projects-holder -->
+    </div>
+</div>
