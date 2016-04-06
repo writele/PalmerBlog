@@ -80,3 +80,5 @@
 \\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.csprojResolveAssemblyReference.cache
 \\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.dll
 \\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.pdb
+\\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.Migrations.AddCommentModified.resources
+\\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.csproj.GenerateResource.Cache

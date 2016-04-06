@@ -14,6 +14,7 @@ namespace PalmerBlog.Models
         [Required]
         public string Content { get; set; }
         public DateTimeOffset Date { get; set; }
+        public DateTimeOffset? Modified { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
         public virtual Post Post { get; set; }
