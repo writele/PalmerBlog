@@ -82,3 +82,8 @@
 \\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.pdb
 \\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.Migrations.AddCommentModified.resources
 \\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\obj\Debug\PalmerBlog.csproj.GenerateResource.Cache
+\\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\bin\SendGrid.dll
+\\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\bin\SendGrid.SmtpApi.dll
+\\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\bin\SendGridMail.dll
+\\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\bin\System.Net.Http.Formatting.dll
+\\Mac\Home\Web Development\Coder Foundry\PalmerBlog\PalmerBlog\bin\System.Net.Http.Formatting.xml

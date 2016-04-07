@@ -32,7 +32,9 @@ namespace PalmerBlog
                       "~/Content/font-awesome.css",
                       "~/Content/bootstrap.css",
                       "~/Content/templatemo-style.css",
-                      "~/Content/main.css"));
+                      "~/Content/main.css",
+                      "~/Content/blog.css"
+                      ));
         }
     }
 }
