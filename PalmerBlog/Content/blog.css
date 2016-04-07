@@ -1,6 +1,8 @@
 ﻿.page-header {
     font-family: "Merriweather", "Times New Roman", serif;
     font-size: 1.5em;
+    margin: 15px 0;
+    text-align: center;
 }
 
 .blog-content {
@@ -19,10 +21,10 @@
 }
 
 .blog-content p {
-    margin-bottom: 5px;
+    margin: 7px 0;
 }
 
-.action-link {
+.action-link, input[type="submit"] {
     width: auto;
     border-radius: 0;
     border: none;
@@ -32,7 +34,7 @@
     margin-bottom: 25px;
 }
 
-.action-link a {
+.action-link a, input[type="submit"] {
     font-family: "Roboto", Arial, sans-serif; 
     font-size: 1.2em;
     color: #fff;
@@ -40,7 +42,18 @@
     padding: 10px;
 }
 
-.action-link:hover {
-    background-color: #6AA285;
+.action-link:hover, input[type="submit"]:hover {
+    background-color: #6294B1;
     color: #fff;
+}
+
+.form-control {
+    margin: 10px 0;
+}
+
+.form-horizontal .form-group {
+    margin: 0;
+}
+
+.control-label {
 }

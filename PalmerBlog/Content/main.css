@@ -1,21 +1,21 @@
 .content-wrapper {
-background-color:#05352F;
-background-image:
-radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
-background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
-background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    background-color: #05352F;
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px), radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px), radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px), radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
 }
 
 .banner-bg {
     width: 100%;
 }
 
+.top-section {
+    padding-bottom: 10px;
+}
+
 /* SIDEBAR COLORS */
 .sidebar-menu, .responsive-header {
-    background-color: #0B486B;
+    background-color: #6294B1;
 }
 
 .main-navigation li a.active, .toggle-menu, .toggle-menu a, .main-navigation li a.external-link:hover {
@@ -24,8 +24,8 @@ background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
 }
 
 .main-navigation li a:hover, .main-navigation li a.active:hover {
-        background: #3B8686;
-        color: #fff;
+    background: #0B486B;
+    color: #fff;
 }
 
 /*PALLETTE: http://www.colourlovers.com/palette/580974/Adrift_in_Dreams */
@@ -36,7 +36,7 @@ a {
 }
 
 a:hover, .resume-links li a:hover {
-    color: #3B8686;
+    color: #6294B1;
 }
 
 .welcome-text h2, h3.profile-title, .resume-section h5 {
@@ -46,6 +46,50 @@ a:hover, .resume-links li a:hover {
 .profile-description, .main-navigation li a, p {
     font-family: "Roboto", Arial, sans-serif;
 }
+    /* SIDEBAR FONTS */
+
+.blog-title-link {
+    margin-top: 0;
+    padding-bottom: 15px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.profile-description, .main-navigation li a, p {
+    font-size: 1.3em;
+}
+
+.main-navigation li li a {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 1.1em;
+    padding: 10px 0;
+    text-align: center;
+    margin: 0;
+}
+
+a.subtitle {
+    font-weight: 500;
+}
+
+.main-navigation li li {
+    padding-left: 5px;
+}
+
+.main-navigation li li span {
+    display: inline-block;
+    margin: 3px;
+}
+
+.main-navigation li li span a {
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+
+    /* PAGE HEADER FONTS */
 
 h3.profile-title {
     margin-top: 10px;
@@ -55,34 +99,18 @@ h3.profile-title {
 h4.widget-title {
     font-size: 1.5em;
     color: #fff;
-}
-
-.profile-description, .main-navigation li a, p {
-    font-size: 1.2em;
+    margin-bottom: 0;
 }
 
 #footer p.copyright-text {
-    color: #fff;
-}
-
-/* SOCIAL ICONS */
-.social-icons {
-    margin-left: 50px;
-}
-
-.social-icons a {
-    padding: 0 5px;
-}
-
-.fa span {
-    margin-left: -9999px;
+    color: #000;
 }
 
 /* RESUME */
 .resume-section, .content-section {
-    margin-bottom:20px;
+    margin-bottom: 20px;
     padding: 25px;
-    background-color:#fff;
+    background-color: #fff;
     color: #000;
 }
 
@@ -115,7 +143,7 @@ button.resume-link, input.resume-link {
     background-color: #0B486B;
     padding: 5px;
     margin: 10px;
-    display: inline-block;  
+    display: inline-block;
 }
 
 .resume-link:hover, input.resume-link:hover {
@@ -134,26 +162,3 @@ button.resume-link, input.resume-link {
     padding-right: 15px;
 }
 
-/* PORTFOLIO */
-.project-hover {
-     font-family: font-family: "Roboto", Arial, sans-serif;
-     font-size: 1.1em;
-}
-
-.project-hover h5 a, .inside i.fa {
-    font-size: 1.2em;
-    font-weight: 500;
-    color: #3B8686;
-}
-
-.inside i.fa {
-    padding: 10px 11px;
-}
-
-.inside a:hover i.fa, .project-hover h5 a:hover {
-    color: #6AA285;
-}
-
-.col-md-6, .col-lg-6 {
-    padding: 0;
-}

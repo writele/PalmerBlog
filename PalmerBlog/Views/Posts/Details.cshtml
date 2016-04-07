@@ -4,6 +4,8 @@
     ViewBag.Title = "Details";
 }
 
+<link href="~/Content/blog.css" rel="stylesheet" />
+
 <div class="banner-bg" id="top">
     <div class="banner-overlay jumbotron"></div>
     <div class="welcome-text">
@@ -17,7 +19,7 @@
             <h4 class="widget-title">Portfolio</h4>
             <div class="content-section">
                 <!-- Blog Post Content Column -->
-                <div class="col-lg-8">
+                <div class="col-lg-12 blog-content">
 
                     <!-- Post Content -->
                     @Html.Raw(Model.Content)

@@ -28,63 +28,79 @@
             <a href="#" class="toggle-menu">Menu</a>
             <div class="main-navigation responsive-menu">
                 <ul class="navigation">
-                    <li>
+                    <li class="blog-title-link">
                         @Html.ActionLink("Blog", "Index", "Posts")
                     </li>
                     <li>
-                        @Html.ActionLink("Categories", "Index", "Categories")
+                        @Html.ActionLink("Categories", "Index", "Categories", new { @class = "subtitle" })
                         <ul>
-                            <li>Category</li>
-                            <li>Category</li>
-                            <li>Category</li>
+                            <li>
+                                <span><a href="#">Category</a></span>
+                                <span><a href="#">Category</a></span>
+                                <span><a href="#">Category</a></span>
+                                <span><a href="#">Category</a></span>
+                                <span><a href="#">Category</a></span>
+                                <span><a href="#">Category</a></span>
+                            </li>
                         </ul>
                     </li>
                     <li>
-                        Recent Posts
+                        <a href="#" class="subtitle">Recent Posts</a>
                         <ul>
-                            <li>Post 1 Title</li>
-                            <li>Post 2 Title</li>
-                            <li>Post 3 Title</li>
+                            <li><a href="">Post Title 1</a></li>
+                            <li><a href="">Post Title 2</a></li>
+                            <li><a href="">Post Title 3</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#">Search</a>
                     </li>
+                    <li>
+                        @Html.ActionLink("About", "Index", "Home")
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
-            </div>
+            </div> <!-- .main-navigation -->
+
         </div>
     </div>
-
     <!-- SIDEBAR -->
     <div class="sidebar-menu hidden-xs hidden-sm">
         <div class="top-section">
-            <a href="index.html"><h3 class="profile-title">Eleanor Palmer</h3></a>
+            <a href="http://epalmer.azurewebsites.net"><h3 class="profile-title">Eleanor Palmer</h3></a>
             <p class="profile-description">Web Developer</p>
         </div> <!-- top-section -->
         <div class="main-navigation">
             <ul class="navigation">
-                <li>
+                <li class="blog-title-link">
                     @Html.ActionLink("Blog", "Index", "Posts")
                 </li>
                 <li>
-                    @Html.ActionLink("Categories", "Index", "Categories")
+                    @Html.ActionLink("Categories", "Index", "Categories", new { @class = "subtitle" } )
                     <ul>
-                        <li><a href="">Category</a></li>
-                        <li>Category</li>
-                        <li>Category</li>
+                        <li>
+                            <span><a href="#">Category</a></span>
+                            <span><a href="#">Category</a></span>
+                            <span><a href="#">Category</a></span>
+                            <span><a href="#">Category</a></span>
+                            <span><a href="#">Category</a></span>
+                            <span><a href="#">Category</a></span>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Recent Posts</a>
+                    <a href="#" class="subtitle">Recent Posts</a>
                         <ul>
                             <li><a href="">Post Title 1</a></li>
-                            <li>Post 2 Title</li>
-                            <li>Post 3 Title</li>
+                            <li><a href="">Post Title 2</a></li>
+                            <li><a href="">Post Title 3</a></li>
                         </ul>
-</li>
+                </li>
                 <li>
                     <a href="#">Search</a>
+                </li>
+                <li>
+                    @Html.ActionLink("About", "Index", "Home")
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")
@@ -96,10 +112,14 @@
             <div class="fluid-container">
 
                 @RenderBody()
+
                 <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - Eleanor Palmer</p>
-                </footer>
+                <div class="row" id="footer">
+                    <div class="col-md-12 text-center">
+                        <p class="copyright-text">&copy; @DateTime.Now.Year - Eleanor Palmer</p>
+                    </div>     
+                </div>
+
             </div>
         </div>
 

@@ -14,13 +14,13 @@
                 <div class="col-md-10">
 
                     <h1 class="page-header">
-                        Blog Posts
+                        The Blog
                     </h1>
 
                     @foreach (var post in Model)
                     {
                         <div class="blog-content">
-                            <!-- First Blog Post -->
+                            <!-- Blog Post -->
                             <h2>
                                 <a href="@Url.Action("Details", new { slug = post.Slug })">@post.Title</a>
                             </h2>
