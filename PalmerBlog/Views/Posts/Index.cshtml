@@ -4,12 +4,14 @@
     ViewBag.Title = "Index";
 }
 
+<link href="~/Content/blog.css" rel="stylesheet" />
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="content-section">
                 <!-- Blog Entries Column -->
-                <div class="col-md-8">
+                <div class="col-md-10">
 
                     <h1 class="page-header">
                         Blog Posts
@@ -17,23 +19,27 @@
 
                     @foreach (var post in Model)
                     {
-                    <!-- First Blog Post -->
-                    <h2>
-                        <a href="@Url.Action("Details", "Posts", new { id = post.Id })">@post.Title</a>
-                    </h2>
-                    <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date by Ele</p>
-                    <hr>
-                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                    <hr>
-                    <p>@post.Excerpt</p> 
-                    <hr />
-                    @Html.ActionLink("Read More", "Details", new { id = post.Id })
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    @Html.ActionLink("Edit", "Edit", new { id = post.Id })
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    @Html.ActionLink("Delete", "Delete", new { id = post.Id })
+                        <div class="blog-content">
+                            <!-- First Blog Post -->
+                            <h2>
+                                <a href="@Url.Action("Details", new { slug = post.Slug })">@post.Title</a>
+                            </h2>
+                            <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date by Ele</p>
+                            <hr>
+                            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                            <hr>
+                            <p>@post.Excerpt</p>
+                            <hr />
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            @Html.ActionLink("Read More", "Details", new { slug = post.Slug })
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            @Html.ActionLink("Edit", "Edit", new { id = post.Id })
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            @Html.ActionLink("Delete", "Delete", new { id = post.Id })
+                        </div>
 
                     }
+                        
                 </div>
             </div>
         </div> <!-- .projects-holder -->

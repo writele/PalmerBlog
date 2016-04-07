@@ -27,13 +27,13 @@ namespace PalmerBlog.Controllers
         }
 
         // GET: Posts/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string Slug)
         {
-            if (id == null)
+            if (String.IsNullOrWhiteSpace(Slug))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = db.Posts.FirstOrDefault(p => p.Slug == Slug);
             if (post == null)
             {
                 return HttpNotFound();
@@ -52,16 +52,28 @@ namespace PalmerBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,Slug,MediaURL")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,MediaURL")] Post post)
         {
             if (ModelState.IsValid)
             {
+                var Slug = StringUtilities.URLFriendly(post.Title);
+                if(String.IsNullOrWhiteSpace(Slug))
+                {
+                    ModelState.AddModelError("Title", "Invalid title.");
+                    return View(post);
+                }
+                if(db.Posts.Any(p=>p.Slug == Slug))
+                {
+                    ModelState.AddModelError("Title", "The title must be unique.");
+                    return View(post);
+                }
+                post.Slug = Slug;
                 post.Date = System.DateTimeOffset.Now;
                 post.Published = true;
                 if (post.Excerpt == null)
                 {
                     var value = post.Content;
-                    post.Excerpt = value.Substring(0, 10);
+                    post.Excerpt = StringUtilities.Shorten(value);
                 }
                 db.Posts.Add(post);
                 db.SaveChanges();
@@ -102,6 +114,11 @@ namespace PalmerBlog.Controllers
                 db.Entry(post).Property("Slug").IsModified = true;
                 db.Entry(post).Property("MediaURL").IsModified = true;
                 post.Modified = System.DateTimeOffset.Now;
+                if (post.Excerpt == null)
+                {
+                    var value = post.Content;
+                    post.Excerpt = StringUtilities.Shorten(value);
+                }
                 post.Published = true;
                 //db.Entry(post).State = EntityState.Modified;              
                 db.SaveChanges();

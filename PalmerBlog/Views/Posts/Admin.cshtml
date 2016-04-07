@@ -3,6 +3,8 @@
     ViewBag.Title = "Admin";
 }
 
+<link href="~/Content/blog.css" rel="stylesheet" />
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -14,27 +16,28 @@
                         Edit Blog Posts
                     </h1>
 
-                    <h2>
+                    <button class="action-link">
                         @Html.ActionLink("New Post", "Create", "Posts")
-                    </h2>
-                    <hr />
+                    </button>
                     @foreach (var post in Model)
                     {
                     <!-- First Blog Post -->
-                        <h2>
-                            <a href="@Url.Action("Details", "Posts", new { id = post.Id })">@post.Title</a>
-                        </h2>
-                        <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date by Ele</p>
-                        <hr>
-                        <p>@Html.Raw(@post.Content)</p>
-                        @Html.ActionLink("Read More", "Details", new { id = post.Id })
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        @Html.ActionLink("Edit", "Edit", new { id = post.Id })
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        @Html.ActionLink("Delete", "Delete", new { id = post.Id })
-
-                    }
-                </div>
+                        <div class="blog-content">
+                            <h2>
+                                <a href="@Url.Action("Details", new { slug = post.Slug })">@post.Title</a>
+                            </h2>
+                            <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date by Ele</p>
+                            <p>@post.Excerpt</p>
+                            <hr />
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            @Html.ActionLink("Read More", "Details", new { slug = post.Slug })
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            @Html.ActionLink("Edit", "Edit", new { id = post.Id })
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            @Html.ActionLink("Delete", "Delete", new { id = post.Id })
+                          </div>
+                            }
+                  </div>
             </div>
         </div> <!-- .projects-holder -->
     </div>

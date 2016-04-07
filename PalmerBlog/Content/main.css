@@ -15,7 +15,7 @@ background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
 
 /* SIDEBAR COLORS */
 .sidebar-menu, .responsive-header {
-    background-color: #6AA285;
+    background-color: #0B486B;
 }
 
 .main-navigation li a.active, .toggle-menu, .toggle-menu a, .main-navigation li a.external-link:hover {
@@ -24,11 +24,8 @@ background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
 }
 
 .main-navigation li a:hover, .main-navigation li a.active:hover {
-    background: #3B8686;
-    color: #fff;
-}
-.external-link {
-    background-color: #3B8686;
+        background: #3B8686;
+        color: #fff;
 }
 
 /*PALLETTE: http://www.colourlovers.com/palette/580974/Adrift_in_Dreams */
