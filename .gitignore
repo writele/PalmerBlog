@@ -47,5 +47,5 @@ Temporary Items
 .apdisk
 
 packages
-Migrations
 private.config
+PalmerBlog/Migrations/Configuration.cs

@@ -1,17 +1,39 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<h2 class="page-header">Contact Me</h2>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="page-section" id="contact">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="content-section">
+                <p>I would love to hear from you. Fill out the form below to send me a message.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+
+                @Html.BeginForm("Contact","Home", FormMethod.Post) {
+                <fieldset class="col-md-4 col-sm-6">
+                    <input type="text" id="your-name" placeholder="Your Name...">
+                </fieldset>
+                <fieldset class="col-md-4 col-sm-6">
+                    <input type="email" id="email" placeholder="Your Email...">
+                </fieldset>
+                <fieldset class="col-md-4 col-sm-12">
+                    <input type="text" id="your-phone" placeholder="Your Phone Number...">
+                </fieldset>
+                <fieldset class="col-md-12 col-sm-12">
+                    <textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+                </fieldset>
+                <fieldset class="col-md-12 col-sm-12">
+                    <input type="submit" class="btn resume-link" value="Send Message">
+                </fieldset>                            
+                }
+
+        </div>
+    </div> <!-- .contact-form -->
+</div>
