@@ -150,7 +150,49 @@ namespace PalmerBlog.Models
 
         public static string Shorten(string s)
         {
-            return s.Substring(0, 100);
+            string input;
+            int sLength;
+            if (s.Length > 300)
+            {
+                input = s.Substring(0, 300);
+                sLength = 300;
+            }
+            else
+            {
+                input = s;
+                sLength = s.Length;
+            }               
+            string result = "";
+
+            var i = 0;
+            while (i < sLength)
+            {
+                if (input.Substring(i, 1) == "<")
+                {
+                    while (input.Substring(i, 1) != ">")
+                    {
+                        i++;
+                    }
+                    i++;           
+                 }
+                else {
+                    result += input.Substring(i, 1);
+                    i++;
+                }
+            }
+
+            int resultLength;
+            if (result.Length >= 250)
+            {
+                resultLength = 250;
+            }
+            else
+            {
+                resultLength = result.Length;
+            }
+            return result.Substring(0, resultLength) + "...";
         }
+
+
     }
 }

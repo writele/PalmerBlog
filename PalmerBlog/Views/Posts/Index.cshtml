@@ -30,10 +30,13 @@
                             <hr />
                             <span class="glyphicon glyphicon-chevron-right"></span>
                             @Html.ActionLink("Read More", "Details", new { slug = post.Slug })
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            @Html.ActionLink("Edit", "Edit", new { id = post.Id })
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            @Html.ActionLink("Delete", "Delete", new { id = post.Id })
+                            @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                            {
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                @Html.ActionLink("Edit", "Edit", new { id = post.Id })
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                @Html.ActionLink("Delete", "Delete", new { id = post.Id })
+                            }
                         </div>
 
                     }

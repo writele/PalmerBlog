@@ -59,20 +59,23 @@ a:hover, .resume-links li a:hover {
     font-size: 1.3em;
 }
 
-.main-navigation li li a {
-    font-family: "Roboto", Arial, sans-serif;
-    font-size: 1.1em;
-    padding: 10px 0;
-    text-align: center;
-    margin: 0;
-}
-
 a.subtitle {
     font-weight: 500;
 }
 
+    /* CATEGORIES */
+
+.main-navigation li li a {
+    font-family: "Roboto", Arial, sans-serif;
+    color: #fff;
+    color: #000;
+    padding: 6px;
+    text-align: center;
+    margin: 0;
+}
+
 .main-navigation li li {
-    padding-left: 5px;
+    padding-left: 20px;
 }
 
 .main-navigation li li span {
@@ -82,12 +85,14 @@ a.subtitle {
 
 .main-navigation li li span a {
     display: inline-block;
-    padding: 5px;
-    border: 2px solid #fff;
+    border: 2px solid #000;
     border-radius: 3px;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
+.main-navigation li li a:hover {
+    background-color: #0B486B;
+}
 
     /* PAGE HEADER FONTS */
 

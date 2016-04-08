@@ -20,7 +20,9 @@ namespace PalmerBlog.Controllers
             return View(db.Posts.OrderByDescending(post => post.Date).ToList());
         }
 
+
         // GET: Posts for Editing
+        [Authorize (Roles = "Admin")]
         public ActionResult Admin()
         {
             return View(db.Posts.ToList());
@@ -42,6 +44,7 @@ namespace PalmerBlog.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -50,6 +53,7 @@ namespace PalmerBlog.Controllers
         // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,MediaURL")] Post post)
@@ -73,7 +77,7 @@ namespace PalmerBlog.Controllers
                 if (post.Excerpt == null)
                 {
                     var value = post.Content;
-                    post.Excerpt = value.Substring(0,100);
+                    post.Excerpt = StringUtilities.Shorten(value);
                 }
                 db.Posts.Add(post);
                 db.SaveChanges();
@@ -84,6 +88,7 @@ namespace PalmerBlog.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,18 +106,31 @@ namespace PalmerBlog.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,Excerpt,Slug,MediaURL")] Post post)
+        public ActionResult Edit([Bind(Include = "Id,Title,Slug,Content,Excerpt,MediaURL")] Post post)
         {
             if (ModelState.IsValid)
             {
                 db.Posts.Attach(post);
                 db.Entry(post).Property("Title").IsModified = true;
+                db.Entry(post).Property("Slug").IsModified = true;
                 db.Entry(post).Property("Content").IsModified = true;
                 db.Entry(post).Property("Excerpt").IsModified = true;
-                db.Entry(post).Property("Slug").IsModified = true;
                 db.Entry(post).Property("MediaURL").IsModified = true;
+                var Slug = StringUtilities.URLFriendly(post.Title);
+                if (String.IsNullOrWhiteSpace(Slug))
+                {
+                    ModelState.AddModelError("Title", "Invalid title.");
+                    return View(post);
+                }
+                if (db.Posts.Any(p => p.Slug == Slug))
+                {
+                    ModelState.AddModelError("Title", "The title must be unique.");
+                    return View(post);
+                }
+                post.Slug = Slug;
                 post.Modified = System.DateTimeOffset.Now;
                 if (post.Excerpt == null)
                 {
@@ -128,6 +146,7 @@ namespace PalmerBlog.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -143,6 +162,7 @@ namespace PalmerBlog.Controllers
         }
 
         // POST: Posts/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
