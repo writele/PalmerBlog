@@ -49,13 +49,16 @@
         <div class="form-group">
             <div class="col-md-offset-1 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default action-link" />
-                <p>
-                    @Html.ActionLink("Back to List", "Admin")
-                </p>
             </div>
         </div>
     </div>
 }
+
+    <div class="col-md-offset-1 col-md-10">
+        <p>
+            @Html.ActionLink("Back to List", "Admin")
+        </p>
+    </div>
 
 @section scripts{
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>

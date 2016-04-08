@@ -17,7 +17,7 @@ namespace PalmerBlog.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            return View(db.Posts.OrderByDescending(post => post.Date).ToList());
         }
 
         // GET: Posts for Editing
@@ -73,7 +73,7 @@ namespace PalmerBlog.Controllers
                 if (post.Excerpt == null)
                 {
                     var value = post.Content;
-                    post.Excerpt = StringUtilities.Shorten(value);
+                    post.Excerpt = value.Substring(0,100);
                 }
                 db.Posts.Add(post);
                 db.SaveChanges();

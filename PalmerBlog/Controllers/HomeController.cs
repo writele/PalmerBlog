@@ -46,7 +46,7 @@ namespace PalmerBlog.Controllers
                 var svc = new EmailService();
                 var msg = new IdentityMessage();
                 msg.Subject = "New Message from Portfolio Website";
-                msg.Body = contact.Message;
+                msg.Body = "Message: " + contact.Message + "<br><br>From: " + contact.Name + "<br><br>E-mail: " + contact.Email + "<br><br>Phone Number: " + contact.Phone;
                 await svc.SendAsync(msg);
 
                 return View(contact);
