@@ -25,7 +25,7 @@ namespace PalmerBlog.Controllers
         [Authorize (Roles = "Admin")]
         public ActionResult Admin()
         {
-            return View(db.Posts.ToList());
+            return View(db.Posts.OrderByDescending(post => post.Date).ToList());
         }
 
         // GET: Posts/Details/5
@@ -113,22 +113,22 @@ namespace PalmerBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Posts.Attach(post);
-                db.Entry(post).Property("Title").IsModified = true;
-                db.Entry(post).Property("Slug").IsModified = true;
-                db.Entry(post).Property("Content").IsModified = true;
-                db.Entry(post).Property("Excerpt").IsModified = true;
-                db.Entry(post).Property("MediaURL").IsModified = true;
+                var PostId = post.Id;       
+                var Title = post.Title;
                 var Slug = StringUtilities.URLFriendly(post.Title);
+                var SlugAlreadyExists = db.Posts.Where(p => p.Id == PostId && p.Slug == Slug).Select(p => p.Slug);
                 if (String.IsNullOrWhiteSpace(Slug))
                 {
                     ModelState.AddModelError("Title", "Invalid title.");
                     return View(post);
-                }
-                if (db.Posts.Any(p => p.Slug == Slug))
+                }               
+                if (!SlugAlreadyExists.Any())
                 {
-                    ModelState.AddModelError("Title", "The title must be unique.");
-                    return View(post);
+                    if (db.Posts.Any(p => p.Slug == Slug))
+                    {
+                        ModelState.AddModelError("Title", "The title must be unique.");
+                        return View(post);
+                    }
                 }
                 post.Slug = Slug;
                 post.Modified = System.DateTimeOffset.Now;
@@ -138,6 +138,12 @@ namespace PalmerBlog.Controllers
                     post.Excerpt = StringUtilities.Shorten(value);
                 }
                 post.Published = true;
+                db.Posts.Attach(post);
+                db.Entry(post).Property("Title").IsModified = true;
+                db.Entry(post).Property("Slug").IsModified = true;
+                db.Entry(post).Property("Content").IsModified = true;
+                db.Entry(post).Property("Excerpt").IsModified = true;
+                db.Entry(post).Property("MediaURL").IsModified = true;
                 //db.Entry(post).State = EntityState.Modified;              
                 db.SaveChanges();
                 return RedirectToAction("Index");
