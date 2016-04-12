@@ -28,9 +28,11 @@ namespace PalmerBlog.Controllers
 
         // GET: Posts for Editing
         [Authorize (Roles = "Admin")]
-        public ActionResult Admin()
+        public ActionResult Admin(int? page)
         {
-            return View(db.Posts.OrderByDescending(post => post.Date).ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(db.Posts.OrderByDescending(post => post.Date).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Posts/Details/5
@@ -67,7 +69,7 @@ namespace PalmerBlog.Controllers
             {
                 switch (submitButton)
                 {
-                    case "Update Post":
+                    case "Post":
                         post.Published = true;
                         break;
                     case "Save Draft":
@@ -87,7 +89,6 @@ namespace PalmerBlog.Controllers
                 }
                 post.Slug = Slug;
                 post.Date = System.DateTimeOffset.Now;
-                post.Published = true;
                 if (post.Excerpt == null)
                 {
                     var value = post.Content;
@@ -128,7 +129,7 @@ namespace PalmerBlog.Controllers
             if (ModelState.IsValid)
             {
                 switch (submitButton) { 
-                    case "Update Post":
+                    case "Post":
                         post.Published = true;
                         break;
                     case "Save Draft":
@@ -165,6 +166,7 @@ namespace PalmerBlog.Controllers
                 db.Entry(post).Property("Content").IsModified = true;
                 db.Entry(post).Property("Excerpt").IsModified = true;
                 db.Entry(post).Property("MediaURL").IsModified = true;
+                db.Entry(post).Property("Published").IsModified = true;
                 //db.Entry(post).State = EntityState.Modified;              
                 db.SaveChanges();
                 return RedirectToAction("Index");

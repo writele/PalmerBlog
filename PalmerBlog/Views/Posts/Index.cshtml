@@ -23,7 +23,7 @@
                             <h2>
                                 <a href="@Url.Action("Details", new { slug = post.Slug })">@post.Title</a>
                             </h2>
-                            <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date by Ele</p>
+                            <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date.ToString("MMMM dd, yyyy h:mm t")M by Ele</p>
                             <hr>
                             @if (@post.MediaURL == null)
                             {
