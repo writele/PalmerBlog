@@ -10,6 +10,7 @@ using PalmerBlog.Models;
 
 namespace PalmerBlog.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {

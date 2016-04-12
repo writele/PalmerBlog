@@ -169,7 +169,7 @@ namespace PalmerBlog.Models
             {
                 if (input.Substring(i, 1) == "<")
                 {
-                    while (input.Substring(i, 1) != ">")
+                    while (input.Substring(i, 1) != ">" && i < sLength)
                     {
                         i++;
                     }

@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using Owin.Security.Providers.GitHub;
 using PalmerBlog.Models;
 
 namespace PalmerBlog
@@ -54,15 +55,17 @@ namespace PalmerBlog
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1679596238956535",
+               appSecret: "e944628e7b45fad50ddc53d81093d693");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "394565388979-9beutsbv5l1rfl5icjo4c4nadl879v39.apps.googleusercontent.com",
+                ClientSecret = "ey9kFaesyLs0xlMq4WS1sVcE"
+            });
+
+            app.UseGitHubAuthentication("e2ecb8463b0a821b8969", "add91bc2fcecc4eec3d34d32924ca5b35e9e02fe");
         }
     }
 }

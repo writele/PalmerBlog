@@ -1,0 +1,169 @@
+.content-wrapper {
+    background-color: #05352F;
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px), radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px), radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px), radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+.banner-bg {
+    width: 100%;
+}
+
+.top-section {
+    padding-bottom: 10px;
+}
+
+/* SIDEBAR COLORS */
+.sidebar-menu, .responsive-header {
+    background-color: #6294B1;
+}
+
+.main-navigation li a.active, .toggle-menu, .toggle-menu a, .main-navigation li a.external-link:hover {
+    background: #0B486B;
+    color: #fff;
+}
+
+.main-navigation li a:hover, .main-navigation li a.active:hover {
+    background: #0B486B;
+    color: #fff;
+}
+
+/*PALLETTE: http://www.colourlovers.com/palette/580974/Adrift_in_Dreams */
+
+/* FONTS */
+a {
+    color: darkblue;
+}
+
+a:hover, .resume-links li a:hover {
+    color: #6294B1;
+}
+
+.welcome-text h2, h3.profile-title, .resume-section h5 {
+    font-family: "Merriweather", "Times New Roman", serif;
+}
+
+.profile-description, .main-navigation li a, p {
+    font-family: "Roboto", Arial, sans-serif;
+}
+    /* SIDEBAR FONTS */
+
+.blog-title-link {
+    margin-top: 0;
+    padding-bottom: 15px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.profile-description, .main-navigation li a, p {
+    font-size: 1.3em;
+}
+
+a.subtitle {
+    font-weight: 500;
+}
+
+    /* CATEGORIES */
+
+.main-navigation li li a {
+    font-family: "Roboto", Arial, sans-serif;
+    color: #fff;
+    color: #000;
+    padding: 6px;
+    text-align: center;
+    margin: 0;
+}
+
+.main-navigation li li {
+    padding-left: 20px;
+}
+
+.main-navigation li li span {
+    display: inline-block;
+    margin: 3px;
+}
+
+.main-navigation li li span a {
+    display: inline-block;
+    border: 2px solid #000;
+    border-radius: 3px;
+    font-size: 1.1em;
+}
+
+.main-navigation li li a:hover {
+    background-color: #0B486B;
+}
+
+    /* PAGE HEADER FONTS */
+
+h3.profile-title {
+    margin-top: 10px;
+    font-size: 1.7em;
+}
+
+h4.widget-title {
+    font-size: 1.5em;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+#footer p.copyright-text {
+    color: #000;
+}
+
+/* RESUME */
+.resume-section, .content-section {
+    margin-bottom: 20px;
+    padding: 25px;
+    background-color: #fff;
+    color: #000;
+}
+
+.resume-section strong {
+    font-weight: 500;
+}
+
+.resume-section h5 {
+    font-size: 1.3em;
+    color: #000;
+    padding-bottom: 15px;
+}
+
+.resume-section p {
+    padding: 0;
+    font-size: 1.3em;
+}
+
+.resume-section ul {
+    margin: 15px 20px;
+    list-style: disc;
+    font-size: 1.2em;
+}
+
+button.resume-link, input.resume-link {
+    width: auto;
+    border-radius: 0;
+    border: none;
+    color: #fff;
+    background-color: #0B486B;
+    padding: 5px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.resume-link:hover, input.resume-link:hover {
+    background-color: #3B8686;
+    color: #fff;
+}
+
+.resume-link a, input.resume-link {
+    display: block;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.resume-link i.fa {
+    padding-right: 15px;
+}
+

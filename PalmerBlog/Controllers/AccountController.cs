@@ -12,6 +12,7 @@ using PalmerBlog.Models;
 
 namespace PalmerBlog.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {

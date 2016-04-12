@@ -6,20 +6,25 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 using PalmerBlog.Models;
+
 
 namespace PalmerBlog.Controllers
 {
+    [RequireHttps]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Posts.OrderByDescending(post => post.Date).ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(db.Posts.OrderByDescending(post => post.Date).ToPagedList(pageNumber,pageSize));
         }
-
 
         // GET: Posts for Editing
         [Authorize (Roles = "Admin")]
@@ -56,10 +61,19 @@ namespace PalmerBlog.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,MediaURL")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,MediaURL")] Post post, string submitButton)
         {
             if (ModelState.IsValid)
             {
+                switch (submitButton)
+                {
+                    case "Update Post":
+                        post.Published = true;
+                        break;
+                    case "Save Draft":
+                        post.Published = false;
+                        break;
+                }
                 var Slug = StringUtilities.URLFriendly(post.Title);
                 if(String.IsNullOrWhiteSpace(Slug))
                 {
@@ -109,10 +123,18 @@ namespace PalmerBlog.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Slug,Content,Excerpt,MediaURL")] Post post)
+        public ActionResult Edit([Bind(Include = "Id,Title,Slug,Content,Excerpt,MediaURL")] Post post, string submitButton)
         {
             if (ModelState.IsValid)
             {
+                switch (submitButton) { 
+                    case "Update Post":
+                        post.Published = true;
+                        break;
+                    case "Save Draft":
+                        post.Published = false;
+                        break;
+                }
                 var PostId = post.Id;       
                 var Title = post.Title;
                 var Slug = StringUtilities.URLFriendly(post.Title);
@@ -137,7 +159,6 @@ namespace PalmerBlog.Controllers
                     var value = post.Content;
                     post.Excerpt = StringUtilities.Shorten(value);
                 }
-                post.Published = true;
                 db.Posts.Attach(post);
                 db.Entry(post).Property("Title").IsModified = true;
                 db.Entry(post).Property("Slug").IsModified = true;
