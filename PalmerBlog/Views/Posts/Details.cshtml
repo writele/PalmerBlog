@@ -82,8 +82,12 @@
                                                     <a href="mailto:@comment.Author.Email">@comment.Author.DisplayName</a>
                                                     <br />
                                                     <small>@comment.Date.ToString("MMMM dd, yyyy h:mm t")M</small>
-                                                    if(@comment.Modified != null){
-                                                    <small class="text-danger">Modified @comment.Modified.ToString("MMMM dd, yyyy h:mm t")M</small>
+                                                    <br />
+                                                    @if (@comment.Modified != null)
+                                                    {
+                                                    <small class="text-danger">
+                                                    Modified @(comment.Modified.HasValue ? @comment.Modified.Value.ToString("yyyy-MM-dd hh:mm:ss") : "Unchanged")M
+                                                    </small>
                                                     }
                                                 </h4>
                                                 <div class="comment-content">
