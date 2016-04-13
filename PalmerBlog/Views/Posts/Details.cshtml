@@ -10,9 +10,9 @@
     {
         <div class="banner-overlay jumbotron"></div>
     }
-    else{
+    else {
         <div class="banner-overlay jumbotron" style="background-image: url('@Model.MediaURL')"></div>
-        }
+    }
 
             <div class="welcome-text">
                 <h2>@Model.Title</h2>
@@ -42,63 +42,54 @@
                                 {
                                     <span>Draft Saved </span>
                                 }
-                                on @Html.DisplayFor(model => model.Date) by Ele
+                                on @Model.Date.ToString("MMMM dd, yyyy h:mm t")M by Ele
                             </p>
 
                             <!-- Blog Comments -->
                             <!-- Comments Form -->
                             <div class="well">
                                 <h4>Leave a Comment:</h4>
-                                <form role="form">
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="3"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
+
+                                    @using (Html.BeginForm("CreateComment", "Posts")) {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-horizontal">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <input type="hidden" name="PostId" value="@Model.Id" />
+
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <textarea class="form-control" id="editor" name="Content"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-offset-1 col-md-10">
+                                                    <input type="submit" value="Post Comment" class="btn btn-default action-link" />
+                                                </div>
+                                            </div>
+                                      </div>
+                                    }
 
                             <hr>
 
-                            <!-- Posted Comments -->
-                            <!-- Comment -->
                             <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        Start Bootstrap
-                                        <small>August 25, 2014 at 9:30 PM</small>
-                                    </h4>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                </div>
-                            </div>
+                                    @{ var p = @Model.Comments; }
+                                        @foreach (var comment in p)
+                                        {
+                                            <div class="media-body">
+                                                <h4 class="media-heading">
+                                                    <a href="mailto:@comment.Author.Email">@comment.Author.DisplayName</a>
+                                                    <br />
+                                                    <small>@comment.Date.ToString("MMMM dd, yyyy h:mm t")M</small>
+                                                </h4>
+                                                <div class="comment-content">
+                                                    @comment.Content
+                                                </div>
+                                            </div>
+                                        }
 
-                            <!-- Comment -->
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        Start Bootstrap
-                                        <small>August 25, 2014 at 9:30 PM</small>
-                                    </h4>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                    <!-- Nested Comment -->
-                                    <div class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                Nested Start Bootstrap
-                                                <small>August 25, 2014 at 9:30 PM</small>
-                                            </h4>
-                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                        </div>
                                     </div>
-                                    <!-- End Nested Comment -->
                                 </div>
                             </div>
 
@@ -107,6 +98,7 @@
                                 @Html.ActionLink("Back to List", "Index")
                             </p>
 
+                            </div>
                         </div>
                     </div>
                 </div> <!-- .projects-holder -->

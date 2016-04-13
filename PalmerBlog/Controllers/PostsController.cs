@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
 using PalmerBlog.Models;
-
+using Microsoft.AspNet.Identity;
 
 namespace PalmerBlog.Controllers
 {
@@ -49,6 +49,24 @@ namespace PalmerBlog.Controllers
             }
             return View(post);
         }
+
+        // POST: Comment Creation
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateComment([Bind(Include = "Content, Id, PostId, AuthorId, Date")] Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                comment.Date = System.DateTime.Now;
+                comment.AuthorId = User.Identity.GetUserId();
+                db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            var Slug = db.Posts.Find(comment.PostId).Slug;
+
+            return RedirectToAction("Details", new { slug = Slug });
+        }
+    
 
         // GET: Posts/Create
         [Authorize(Roles = "Admin")]
