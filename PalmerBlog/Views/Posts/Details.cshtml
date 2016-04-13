@@ -90,7 +90,8 @@
                                                         @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Moderator")){
                                                             <div>
 
-                                                            @using (Html.BeginForm("DeleteComment", "Posts")){
+                                                            @using (Html.BeginForm("DeleteComment", "Posts", FormMethod.Post, new { onsubmit = "return confirm('Do you really want to delete this comment?')" }))
+                                                            {
                                                                 @Html.AntiForgeryToken()
                                                                 <input type="hidden" name="CommentId" value="@comment.Id" />
                                                                 <input type="hidden" name="PostId" value="@comment.PostId" />
@@ -101,7 +102,7 @@
                                                                 </div>
                                                              }
                                                             </div>
-                                                        }
+                                                            }
                                 
                                             </div>
 
