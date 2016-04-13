@@ -1,16 +1,10 @@
-(function($) {
+function EditComment() {
+    $(".comment-content-edit").show();
+    $(".comment-btn-edit").hide();
+    $(".comment-content").hide();
+};
 
-	"use strict";	
-
-
-    $('.toggle-menu').click(function(){
-        $('.responsive-menu').stop(true,true).slideToggle();
-        return false;
-    });
-
-
-
-})(jQuery);
+$(".comment-btn-edit").on("click", EditComment());
 
 
 

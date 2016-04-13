@@ -27,7 +27,7 @@ namespace PalmerBlog.Controllers
             return View(db.Posts.OrderByDescending(post => post.Date).ToPagedList(pageNumber,pageSize));
         }
 
-        // GET: Posts for Editing
+        // GET: Admin Page (Posts for Editing)
         [Authorize (Roles = "Admin")]
         public ActionResult Admin(int? page)
         {

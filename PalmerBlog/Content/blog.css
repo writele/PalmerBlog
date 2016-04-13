@@ -77,6 +77,12 @@ hr {
 
 }
 
-.comment-btn {
+.comment-content-edit {
+    display: none;
+}
 
+input[type="submit"].comment-btn {
+    display: inline;
+    margin: 5px;
+    padding: 5px;
 }
