@@ -22,16 +22,3 @@
 
 }());
 // Place any jQuery/helper plugins in here.
-
-/* Delete Comment Confirmation */
-$(document).ready(function () {
-
-    var DeleteCommentBtn = document.getElementsByClassName("comment-btn");
-    DeleteCommentBtn.addEventListener("click", function (e) {
-        var DeleteComment = confirm("Are you sure you want to delete this comment?");
-        if (!DeleteComment) {
-            e.preventDefault();
-            return false;
-        }
-    });
-});

@@ -6,7 +6,7 @@
 
 <h2 class="page-header">Create New Post</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Posts", FormMethod.Post, new { enctype = "Multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
@@ -39,7 +39,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control" } })
+                <input name="image" type="file" class="form-control" id="fileUpload" />
                 @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
             </div>
         </div>

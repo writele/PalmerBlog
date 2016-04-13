@@ -10,6 +10,7 @@ using PagedList;
 using PagedList.Mvc;
 using PalmerBlog.Models;
 using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace PalmerBlog.Controllers
 {
@@ -68,7 +69,7 @@ namespace PalmerBlog.Controllers
         }
 
         // POST: Delete Comment
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteComment(int CommentId, int PostId)
@@ -95,7 +96,7 @@ namespace PalmerBlog.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,MediaURL")] Post post, string submitButton)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,MediaURL")] Post post, string submitButton, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -120,6 +121,12 @@ namespace PalmerBlog.Controllers
                     return View(post);
                 }
                 post.Slug = Slug;
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    post.MediaURL = "/Uploads/" + fileName;
+                }
                 post.Date = System.DateTimeOffset.Now;
                 if (post.Excerpt == null)
                 {
@@ -156,7 +163,7 @@ namespace PalmerBlog.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Slug,Content,Excerpt,MediaURL")] Post post, string submitButton)
+        public ActionResult Edit([Bind(Include = "Id,Title,Slug,Content,Excerpt,MediaURL")] Post post, string submitButton, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -186,6 +193,12 @@ namespace PalmerBlog.Controllers
                     }
                 }
                 post.Slug = Slug;
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    post.MediaURL = "/Uploads/" + fileName;
+                }
                 post.Modified = System.DateTimeOffset.Now;
                 if (post.Excerpt == null)
                 {

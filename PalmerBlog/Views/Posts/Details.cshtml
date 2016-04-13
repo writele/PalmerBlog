@@ -82,6 +82,9 @@
                                                     <a href="mailto:@comment.Author.Email">@comment.Author.DisplayName</a>
                                                     <br />
                                                     <small>@comment.Date.ToString("MMMM dd, yyyy h:mm t")M</small>
+                                                    if(@comment.Modified != null){
+                                                    <small class="text-danger">Modified @comment.Modified.ToString("MMMM dd, yyyy h:mm t")M</small>
+                                                    }
                                                 </h4>
                                                 <div class="comment-content">
                                                     @comment.Content
