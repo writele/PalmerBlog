@@ -17,7 +17,7 @@
             <div class="welcome-text">
                 <h2>@Model.Title</h2>
             </div>
-        </div>
+</div>
 
         <div class="page-section">
             <div class="row">
@@ -86,10 +86,26 @@
                                                 <div class="comment-content">
                                                     @comment.Content
                                                 </div>
-                                            </div>
-                                        }
+                                 
+                                                        @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Moderator")){
+                                                            <div>
 
-                                    </div>
+                                                            @using (Html.BeginForm("DeleteComment", "Posts")){
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="CommentId" value="@comment.Id" />
+                                                                <input type="hidden" name="PostId" value="@comment.PostId" />
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-1 col-md-10">
+                                                                        <input type="submit" value="Delete" class="btn btn-default action-link comment-btn" />
+                                                                    </div>
+                                                                </div>
+                                                             }
+                                                            </div>
+                                                        }
+                                
+                                            </div>
+
+                                        }
                                 </div>
                             </div>
 
@@ -103,5 +119,4 @@
                     </div>
                 </div> <!-- .projects-holder -->
             </div>
-        </div>
 

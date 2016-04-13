@@ -66,7 +66,21 @@ namespace PalmerBlog.Controllers
 
             return RedirectToAction("Details", new { slug = Slug });
         }
-    
+
+        // POST: Delete Comment
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteComment(int CommentId, int PostId)
+        {
+            Comment comment = db.Comments.Find(CommentId);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+
+            var Slug = db.Posts.Find(comment.PostId).Slug;
+            return RedirectToAction("Details", new { slug = Slug });
+        }
+
 
         // GET: Posts/Create
         [Authorize(Roles = "Admin")]

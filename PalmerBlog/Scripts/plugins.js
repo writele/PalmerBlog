@@ -19,27 +19,19 @@
             console[method] = noop;
         }
     }
-}());
 
+}());
 // Place any jQuery/helper plugins in here.
 
+/* Delete Comment Confirmation */
+$(document).ready(function () {
 
-/**
- * Smooth Scrolling from CSS-Tricks.com
- */
-
-$(function () {
-    $('a[href*="#"]:not([href="#"])').click(function () {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html, body').animate({
-                    scrollTop: target.offset().top
-                }, 1000);
-                return false;
-            }
+    var DeleteCommentBtn = document.getElementsByClassName("comment-btn");
+    DeleteCommentBtn.addEventListener("click", function (e) {
+        var DeleteComment = confirm("Are you sure you want to delete this comment?");
+        if (!DeleteComment) {
+            e.preventDefault();
+            return false;
         }
     });
 });
-
