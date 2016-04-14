@@ -62,10 +62,38 @@ namespace PalmerBlog.Controllers
                 comment.AuthorId = User.Identity.GetUserId();
                 db.Comments.Add(comment);
                 db.SaveChanges();
+                var Slug = db.Posts.Find(comment.PostId).Slug;
+                return RedirectToAction("Details", new { slug = Slug });
             }
-            var Slug = db.Posts.Find(comment.PostId).Slug;
+            return View("Index");
+        }
 
-            return RedirectToAction("Details", new { slug = Slug });
+        // POST: Edit Comment
+        [Authorize(Roles = "Admin, Moderator")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditComment(string EditContent, int EditPostId, int EditCommentId, DateTimeOffset EditDate)
+        {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            if (ModelState.IsValid)
+            {
+                var comment = new Comment();
+                comment.Modified = System.DateTime.Now;
+                comment.AuthorId = User.Identity.GetUserId();
+                comment.Content = EditContent;
+                comment.Id = EditCommentId;
+                comment.PostId = EditPostId;
+                comment.Date = EditDate;
+                db.Comments.Attach(comment);
+                db.Entry(comment).State = EntityState.Modified; 
+                //db.Entry(comment).Property("Content").IsModified = true;
+                //db.Entry(comment).Property("Modified").IsModified = true;
+                db.SaveChanges();
+                comment.PostId = EditPostId;
+                var Slug = db.Posts.Find(comment.PostId).Slug;
+                return RedirectToAction("Details", new { slug = Slug });
+            }
+            return RedirectToAction("Index");
         }
 
         // POST: Delete Comment
@@ -81,7 +109,6 @@ namespace PalmerBlog.Controllers
             var Slug = db.Posts.Find(comment.PostId).Slug;
             return RedirectToAction("Details", new { slug = Slug });
         }
-
 
         // GET: Posts/Create
         [Authorize(Roles = "Admin")]

@@ -101,12 +101,13 @@
                                                                 @using (Html.BeginForm("EditComment", "Posts", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to edit this comment?')" }))
                                                                 {
                                                                 @Html.AntiForgeryToken()
-                                                                <input type="hidden" name="CommentId" value="@comment.Id" />
-                                                                <input type="hidden" name="PostId" value="@comment.PostId" />
+                                                                <input type="hidden" name="EditCommentId" value="@comment.Id" />
+                                                                <input type="hidden" name="EditPostId" value="@comment.PostId" />
+                                                                <input type="hidden" name="EditDate" value="@comment.Date" />
 
                                                                 <div class="form-group">
                                                                     <div class="col-md-10">
-                                                                        <textarea class="form-control" id="editor" name="Content">@comment.Content</textarea>
+                                                                        <textarea class="form-control" id="editor" name="EditContent" value="@comment.Content"></textarea>
                                                                     </div>
                                                                 </div>
 
