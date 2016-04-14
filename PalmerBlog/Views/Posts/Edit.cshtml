@@ -43,6 +43,7 @@
             <div class="col-md-10">
                 <input name="image" type="file" class="form-control" id="fileUpload" />
                 @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MediaURL, new { name = "OriginalMediaURL" })
             </div>
         </div>
 

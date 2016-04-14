@@ -28,7 +28,7 @@ namespace PalmerBlog.Controllers
             var qposts = db.Posts.AsQueryable();
             if(!string.IsNullOrWhiteSpace(query))
             {
-                qposts = qposts.Where(p => p.Title.Contains(query) || p.Content.Contains(query) || p.Excerpt.Contains(query) || p.Comments.Select(c => c.Content).Contains(query));
+                qposts = qposts.Where(p => p.Title.Contains(query) || p.Content.Contains(query) || p.Excerpt.Contains(query) || p.Comments.Any(c => c.Content.Contains(query)));
             }
             var posts = qposts.OrderByDescending(post => post.Date).ToPagedList(pageNumber, pageSize);
             return View(posts);
@@ -227,26 +227,32 @@ namespace PalmerBlog.Controllers
                     }
                 }
                 post.Slug = Slug;
-                if (ImageUploadValidator.IsWebFriendlyImage(image))
-                {
-                    var fileName = Path.GetFileName(image.FileName);
-                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
-                    post.MediaURL = "/Uploads/" + fileName;
-                }
                 post.Modified = System.DateTimeOffset.Now;
                 if (post.Excerpt == null)
                 {
                     var value = post.Content;
                     post.Excerpt = StringUtilities.Shorten(value);
                 }
+                if (ImageUploadValidator.IsWebFriendlyImage(image))
+                {
+                    var fileName = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), fileName));
+                    if (fileName != null)
+                    post.MediaURL = "/Uploads/" + fileName;
+                }
+                else
+                {
+                    post.MediaURL = post.MediaURL;
+                }
                 db.Posts.Attach(post);
                 db.Entry(post).Property("Title").IsModified = true;
                 db.Entry(post).Property("Slug").IsModified = true;
                 db.Entry(post).Property("Content").IsModified = true;
                 db.Entry(post).Property("Excerpt").IsModified = true;
-                db.Entry(post).Property("MediaURL").IsModified = true;
                 db.Entry(post).Property("Published").IsModified = true;
-                //db.Entry(post).State = EntityState.Modified;              
+                db.Entry(post).Property("Modified").IsModified = true;
+                db.Entry(post).Property("MediaURL").IsModified = true;
+                //db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

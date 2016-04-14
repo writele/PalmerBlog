@@ -49,8 +49,9 @@
                             <!-- Comments Form -->
                             <div class="well">
                                 <h4>Leave a Comment:</h4>
-
-                                    @using (Html.BeginForm("CreateComment", "Posts"))
+                                @if (Request.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("CreateComment", "Posts"))
                                     {
                                         @Html.AntiForgeryToken()
 
@@ -63,6 +64,7 @@
                                                     <textarea class="form-control" id="editor" name="Content"></textarea>
                                                 </div>
                                             </div>
+                                            
 
                                             <div class="form-group">
                                                 <div class="col-md-offset-1 col-md-10">
@@ -71,6 +73,10 @@
                                             </div>
                                       </div>
                                     }
+                                }
+                                else{
+                                    <p class="text-danger">You must be logged in to comment.</p>
+                                }
 
                             <hr>
 
@@ -80,7 +86,15 @@
                                         {
                                             <div class="media-body">
                                                 <h4 class="media-heading">
-                                                    <a href="mailto:@comment.Author.Email">@comment.Author.DisplayName</a>
+                                                    <a href="mailto:@comment.Author.Email">@if (comment.Author.DisplayName != null)
+                                                    {
+                                                        @comment.Author.DisplayName
+                                                    }
+                                                    else
+                                                    {
+                                                        @comment.Author.Email
+                                                    }
+                                                    </a>
                                                     <br />
                                                     <small>@comment.Date.ToString("MMMM dd, yyyy h:mm t")M</small>
                                                     <br />
@@ -147,7 +161,6 @@
                             </div>
 
                             <p>
-                                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
                                 @Html.ActionLink("Back to List", "Index")
                             </p>
 
