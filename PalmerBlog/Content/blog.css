@@ -77,7 +77,7 @@ hr {
 
 }
 
-.comment-content-edit {
+.comment-content-edit, .comment-btn-cancel {
     display: none;
 }
 

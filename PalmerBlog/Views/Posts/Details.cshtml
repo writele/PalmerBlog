@@ -123,6 +123,10 @@
                                                                 <button class="btn btn-default action-link comment-btn" type="button">Edit</button>
                                                             </div>
 
+                                                            <div class="form-group comment-btn-cancel">
+                                                                <button class="btn btn-default action-link comment-btn" type="button">Cancel</button>
+                                                            </div>
+
                                                             <div>
 
                                                             @using (Html.BeginForm("DeleteComment", "Posts", FormMethod.Post, new { onsubmit = "return confirm('Do you really want to delete this comment?')" }))
@@ -130,7 +134,7 @@
                                                                 @Html.AntiForgeryToken()
                                                                 <input type="hidden" name="CommentId" value="@comment.Id" />
                                                                 <input type="hidden" name="PostId" value="@comment.PostId" />
-                                                                <div class="form-group">
+                                                                <div class="form-group comment-btn-delete">
                                                                         <input type="submit" value="Delete" class="btn btn-default action-link comment-btn" />
                                                                 </div>
                                                             }
