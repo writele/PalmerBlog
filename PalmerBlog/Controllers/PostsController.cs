@@ -20,11 +20,18 @@ namespace PalmerBlog.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string query)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(db.Posts.OrderByDescending(post => post.Date).ToPagedList(pageNumber,pageSize));
+            ViewBag.Query = query;
+            var qposts = db.Posts.AsQueryable();
+            if(!string.IsNullOrWhiteSpace(query))
+            {
+                qposts = qposts.Where(p => p.Title.Contains(query) || p.Content.Contains(query) || p.Excerpt.Contains(query) || p.Comments.Select(c => c.Content).Contains(query));
+            }
+            var posts = qposts.OrderByDescending(post => post.Date).ToPagedList(pageNumber, pageSize);
+            return View(posts);
         }
 
         // GET: Admin Page (Posts for Editing)

@@ -1,12 +1,13 @@
 $(document).ready(function () {
 
     function EditComment() {
-        $(".comment-content-edit").toggle();
-        $(".comment-btn-edit").toggle();
-        $(".comment-content").toggle();
+        $("comment-content-edit").show();
+        $(".comment-btn-edit").hide();
+        $(".comment-content").hide();
+        console.log($(this).parent().find("comment-content-edit"));
     };
 
-    $(document).on("click", ".comment-btn-edit", EditComment);
+    $(".comment-btn-edit").on("click", EditComment);
 });
 
 

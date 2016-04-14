@@ -1,3 +1,7 @@
+input[type="submit"].search {
+    font-family: 'Glyphicons Halflings';
+}
+
 .content-wrapper {
     background-color: #05352F;
     background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px), radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px), radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px), radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
