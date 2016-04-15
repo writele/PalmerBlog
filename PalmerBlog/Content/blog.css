@@ -75,15 +75,34 @@ hr {
 }
 
 .comment-content {
-
+    margin-bottom: 10px;
+    border: 2px solid #DDDDDD;
+    padding: 10px;
+    font-family: "Roboto", Arial, sans-serif; 
+    font-size: 1.1em;
 }
 
 .comment-content-edit, .comment-btn-cancel {
     display: none;
 }
 
-input[type="submit"].comment-btn {
+input[type="submit"].comment-btn, button.comment-btn {
+    font-family: "Roboto", Arial, sans-serif; 
+    font-size: 1.2em;
     display: inline;
-    margin: 5px;
+    margin-bottom: 10px;
     padding: 5px;
+    width: auto;
+    border-radius: 0;
+    border: none;
+    background-color: #0B486B;
+    color: #fff;
+}
+
+.comment-btn-edit button.comment-btn {
+    margin-bottom: 0;
+}
+input[type="submit"].comment-btn:hover, button.comment-btn:hover {
+    background-color: #6294B1;
+    color: #fff;
 }
