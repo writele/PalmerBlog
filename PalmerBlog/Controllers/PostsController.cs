@@ -22,7 +22,7 @@ namespace PalmerBlog.Controllers
         // GET: Posts
         public ActionResult Index(int? page, string query)
         {
-            int pageSize = 10;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             ViewBag.Query = query;
             var qposts = db.Posts.AsQueryable();
@@ -90,15 +90,14 @@ namespace PalmerBlog.Controllers
             {
                 var comment = new Comment();
                 comment.Modified = System.DateTime.Now;
-                comment.AuthorId = User.Identity.GetUserId();
                 comment.Content = EditContent;
                 comment.Id = EditCommentId;
                 comment.PostId = EditPostId;
                 comment.Date = EditDate;
                 db.Comments.Attach(comment);
-                db.Entry(comment).State = EntityState.Modified; 
-                //db.Entry(comment).Property("Content").IsModified = true;
-                //db.Entry(comment).Property("Modified").IsModified = true;
+                //db.Entry(comment).State = EntityState.Modified;
+                db.Entry(comment).Property("Content").IsModified = true;
+                db.Entry(comment).Property("Modified").IsModified = true;
                 db.SaveChanges();
                 comment.PostId = EditPostId;
                 var Slug = db.Posts.Find(comment.PostId).Slug;
@@ -288,7 +287,7 @@ namespace PalmerBlog.Controllers
             Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
         protected override void Dispose(bool disposing)
