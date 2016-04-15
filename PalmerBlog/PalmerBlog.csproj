@@ -255,6 +255,11 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\freelance.css" />
     <Content Include="Content\Images\computer.jpg" />
+    <Content Include="Content\Images\csharp.png" />
+    <Content Include="Content\Images\css.png" />
+    <Content Include="Content\Images\DotNet.png" />
+    <Content Include="Content\Images\html-grey.png" />
+    <Content Include="Content\Images\jquery.png" />
     <Content Include="Content\Images\notebook.jpg" />
     <Content Include="Content\main.css" />
     <Content Include="Content\normalize.css" />
@@ -447,6 +452,15 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\computer.jpg" />
+    <Content Include="Uploads\freelance1.jpg" />
+    <Content Include="Uploads\freelance3.jpg" />
+    <Content Include="Uploads\freelance4.jpg" />
+    <Content Include="Uploads\js-exercise1.jpg" />
+    <Content Include="Uploads\js-exercise2.jpg" />
+    <Content Include="Uploads\js-exercise3.jpg" />
+    <Content Include="Uploads\js-exercise4.jpg" />
+    <Content Include="Uploads\trees.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -504,7 +518,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

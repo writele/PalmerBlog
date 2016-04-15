@@ -36,6 +36,14 @@
                 </fieldset>                            
                 }
 
+            
+                @if (ViewBag.Message != null || "")
+                {
+                    <p class="text-success text-center">
+                        @ViewBag.Message
+                    </p>
+                }
+                    
         </div>
     </div> <!-- .contact-form -->
 </div>

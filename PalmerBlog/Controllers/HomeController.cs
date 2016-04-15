@@ -33,8 +33,7 @@ namespace PalmerBlog.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Message = "";
             return View();
         }
 
@@ -50,6 +49,8 @@ namespace PalmerBlog.Controllers
                 msg.Subject = "New Message from Portfolio Website";
                 msg.Body = "Message: " + contact.Message + "<br><br>From: " + contact.Name + "<br><br>E-mail: " + contact.Email + "<br><br>Phone Number: " + contact.Phone;
                 await svc.SendAsync(msg);
+
+                ViewBag.Message = "Thank you for your message!";
 
                 return View(contact);
             }
