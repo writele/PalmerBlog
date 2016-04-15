@@ -14,6 +14,7 @@ namespace PalmerBlog.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Query = "Search Posts";
             return View();
         }
 

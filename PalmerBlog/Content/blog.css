@@ -1,5 +1,6 @@
 ﻿.banner-overlay {
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: url("/Content/Images/notebook.jpg");
   opacity: .7;
 }

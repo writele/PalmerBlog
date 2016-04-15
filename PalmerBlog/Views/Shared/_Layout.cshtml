@@ -44,7 +44,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Search</a>
+                        @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+                        {
+                            <input type="text" name="query" class="search" value="@ViewBag.Query" />
+                            <input type="submit" class="search" value="&#xe003" />
+                        }
                     </li>
                     <li>
                         @Html.ActionLink("About", "Index", "Home")

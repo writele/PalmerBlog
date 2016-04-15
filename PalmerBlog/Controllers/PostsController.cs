@@ -30,6 +30,10 @@ namespace PalmerBlog.Controllers
             {
                 qposts = qposts.Where(p => p.Title.Contains(query) || p.Content.Contains(query) || p.Excerpt.Contains(query) || p.Comments.Any(c => c.Content.Contains(query)));
             }
+            else
+            {
+                ViewBag.Query = "Search Posts";
+            }
             var posts = qposts.OrderByDescending(post => post.Date).ToPagedList(pageNumber, pageSize);
             return View(posts);
         }
