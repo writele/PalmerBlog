@@ -28,7 +28,6 @@
 
 .blog-content a {
     font-family: "Roboto", Arial, sans-serif;
-    font-size: 1.1em;
 }
 
 .blog-content p {
@@ -105,4 +104,12 @@ input[type="submit"].comment-btn, button.comment-btn {
 input[type="submit"].comment-btn:hover, button.comment-btn:hover {
     background-color: #6294B1;
     color: #fff;
+}
+
+.technologies {
+    display: inline-block;
+    text-align: center;
+}
+.technologies img {   
+    margin-top: 20px;
 }
