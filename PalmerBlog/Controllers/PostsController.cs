@@ -65,6 +65,7 @@ namespace PalmerBlog.Controllers
         // POST: Comment Creation
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateComment([Bind(Include = "Content, Id, PostId, AuthorId, Date")] Comment comment)
         {
             if (ModelState.IsValid)

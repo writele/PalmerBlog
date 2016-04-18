@@ -8,6 +8,9 @@
 .banner-bg {
     width: 100%;
 }
+.shorten.banner-bg {
+    max-height: 450px;
+}
 
 .top-section {
     padding-bottom: 10px;
