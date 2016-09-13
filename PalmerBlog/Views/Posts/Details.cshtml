@@ -4,6 +4,7 @@
     ViewBag.Title = "Details";
 }
 
+<link href="~/Content/prism.css" rel="stylesheet" />
 <div class="banner-bg" id="top">
 
     @if (Model.MediaURL == null)
@@ -42,7 +43,7 @@
                                 {
                                     <span>Draft Saved </span>
                                 }
-                                on @Model.Date.ToString("MMMM dd, yyyy h:mm t")M by Ele
+                                on @Model.Date.ToLocalTime().ToString("MMMM dd, yyyy h:mm t")M by Ele
                             </p>
 
                             <!-- Blog Comments -->
@@ -96,7 +97,7 @@
                                                     }
                                                     </a>
                                                     <br />
-                                                    <small>@comment.Date.ToString("MMMM dd, yyyy h:mm t")M</small>
+                                                    <small>@comment.Date.ToLocalTime().ToString("MMMM dd, yyyy h:mm t")M</small>
                                                     <br />
                                                     @if (@comment.Modified != null)
                                                     {
@@ -169,3 +170,6 @@
                     </div>
                 </div> <!-- .projects-holder -->
             </div>
+@section scripts{
+<script src="~/Scripts/prism.js"></script>
+}

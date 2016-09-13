@@ -1,7 +1,7 @@
 ﻿@model IPagedList<PalmerBlog.Models.Post>
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Blog Index";
 }
 <div class="container">
     <div class="row">
@@ -23,7 +23,7 @@
                             <h2>
                                 <a href="@Url.Action("Details", new { slug = post.Slug })">@post.Title</a>
                             </h2>
-                            <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date by Ele</p>
+                            <p><span class="glyphicon glyphicon-time"></span> Posted on @post.Date.ToLocalTime().ToString("MMMM dd, yyyy h:mm t")M by Ele</p>
                             <hr>
                             @if (@post.MediaURL == null)
                             {

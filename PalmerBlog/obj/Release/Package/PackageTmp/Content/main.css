@@ -8,6 +8,9 @@
 .banner-bg {
     width: 100%;
 }
+.shorten.banner-bg {
+    max-height: 450px;
+}
 
 .top-section {
     padding-bottom: 10px;
@@ -43,7 +46,7 @@ a:hover, .resume-links li a:hover {
     font-family: "Merriweather", "Times New Roman", serif;
 }
 
-.profile-description, .main-navigation li a, p {
+.profile-description, .main-navigation li a, p, input {
     font-family: "Roboto", Arial, sans-serif;
 }
     /* SIDEBAR FONTS */
@@ -167,3 +170,29 @@ button.resume-link, input.resume-link {
     padding-right: 15px;
 }
 
+/* SEARCH BAR */
+
+input[type="submit"].search, input.search {
+    display: inline-block;
+    height: 40px;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+input[type="submit"].search {
+    font-family: 'Glyphicons Halflings';
+}
+
+input[type="submit"].search:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+input.search {
+    width: auto;
+    border-radius: 0;
+    border: none;
+    padding: 5px;
+    margin-left: 25px;
+    vertical-align: bottom;
+}

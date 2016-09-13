@@ -10,14 +10,14 @@
     {
         <div class="banner-overlay jumbotron"></div>
     }
-    else{
-        <div class="banner-overlay jumbotron" style="background-image: url('@Model.MediaURL')"></div>
-        }
+    else {
+        <div class="banner-overlay" style="background-image: url('@Model.MediaURL')"></div>
+    }
 
             <div class="welcome-text">
                 <h2>@Model.Title</h2>
             </div>
-        </div>
+</div>
 
         <div class="page-section">
             <div class="row">
@@ -42,74 +42,130 @@
                                 {
                                     <span>Draft Saved </span>
                                 }
-                                on @Html.DisplayFor(model => model.Date) by Ele
+                                on @Model.Date.ToLocalTime().ToString("MMMM dd, yyyy h:mm t")M by Ele
                             </p>
 
                             <!-- Blog Comments -->
                             <!-- Comments Form -->
                             <div class="well">
                                 <h4>Leave a Comment:</h4>
-                                <form role="form">
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="3"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("CreateComment", "Posts"))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-horizontal">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <input type="hidden" name="PostId" value="@Model.Id" />
+
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <textarea class="form-control" id="editor" name="Content"></textarea>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="form-group">
+                                                <div class="col-md-10">
+                                                    <input type="submit" value="Post Comment" class="btn btn-default action-link" />
+                                                </div>
+                                            </div>
+                                      </div>
+                                    }
+                                }
+                                else{
+                                    <p class="text-danger">You must be logged in to comment.</p>
+                                }
 
                             <hr>
 
-                            <!-- Posted Comments -->
-                            <!-- Comment -->
                             <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        Start Bootstrap
-                                        <small>August 25, 2014 at 9:30 PM</small>
-                                    </h4>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                </div>
-                            </div>
+                                    @{ var p = @Model.Comments; }
+                                        @foreach (var comment in p)
+                                        {
+                                            <div class="media-body">
+                                                <h4 class="media-heading">
+                                                    <a href="mailto:@comment.Author.Email">@if (comment.Author.DisplayName != null)
+                                                    {
+                                                        @comment.Author.DisplayName
+                                                    }
+                                                    else
+                                                    {
+                                                        @comment.Author.Email
+                                                    }
+                                                    </a>
+                                                    <br />
+                                                    <small>@comment.Date.ToLocalTime().ToString("MMMM dd, yyyy h:mm t")M</small>
+                                                    <br />
+                                                    @if (@comment.Modified != null)
+                                                    {
+                                                    <small class="text-danger">
+                                                    Modified @(comment.Modified.HasValue ? @comment.Modified.Value.ToString("MMMM dd, yyyy h:mm t") : "Unchanged")M
+                                                    </small>
+                                                    }
+                                                </h4>
+                                                <div class="comment-content">
+                                                        @comment.Content
+                                                </div>
+                                                
+                                                    @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Moderator"))
+                                                    {
+                                                            <div class="comment-content-edit">
+                                                                @using (Html.BeginForm("EditComment", "Posts", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to modify this comment?')" }))
+                                                                {
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="EditCommentId" value="@comment.Id" />
+                                                                <input type="hidden" name="EditPostId" value="@comment.PostId" />
+                                                                <input type="hidden" name="EditDate" value="@comment.Date" />
 
-                            <!-- Comment -->
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        Start Bootstrap
-                                        <small>August 25, 2014 at 9:30 PM</small>
-                                    </h4>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                    <!-- Nested Comment -->
-                                    <div class="media">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                Nested Start Bootstrap
-                                                <small>August 25, 2014 at 9:30 PM</small>
-                                            </h4>
-                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                        </div>
-                                    </div>
-                                    <!-- End Nested Comment -->
+                                                                <div class="form-group">
+                                                                    <div class="col-md-10">
+                                                                        <textarea class="form-control" id="editor" name="EditContent">@comment.Content</textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <div class="col-md-6">
+                                                                        <input type="submit" value="Submit Change" class="btn btn-default comment-btn" />
+                                                                    </div>
+                                                                </div>
+                                                                }
+                                                            </div>
+                                                    
+                                                            <div class="form-group comment-btn-edit">
+                                                                <button class="btn btn-default comment-btn" type="button">Edit</button>
+                                                            </div>
+                                                            
+                                                            <div class="form-group comment-btn-cancel col-md-pull-4 col-md-2">
+                                                                <button class="btn btn-default comment-btn" type="button">Cancel</button>
+                                                            </div>
+
+                                                            <div>
+
+                                                            @using (Html.BeginForm("DeleteComment", "Posts", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this comment?')" }))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="CommentId" value="@comment.Id" />
+                                                                <input type="hidden" name="PostId" value="@comment.PostId" />
+                                                                <div class="form-group comment-btn-delete">
+                                                                        <input type="submit" value="Delete" class="btn btn-default action-link comment-btn" />
+                                                                </div>
+                                                            }
+                                                            </div>
+                                                    }
+                                            </div>
+
+                                        }
                                 </div>
                             </div>
 
                             <p>
-                                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
                                 @Html.ActionLink("Back to List", "Index")
                             </p>
 
+                            </div>
                         </div>
                     </div>
                 </div> <!-- .projects-holder -->
             </div>
-        </div>
-

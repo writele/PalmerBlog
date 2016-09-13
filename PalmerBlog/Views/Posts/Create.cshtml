@@ -64,9 +64,12 @@
     <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#editor").tinymce({
-                toolbar: 'newdocument, undo, redo, visualaid, cut, copy, paste, selectall, bold, italic, underline, strikethrough, subscript, superscript, removeformat, formats, link',
-                plugins: 'link'
+            //$("#editor").tinymce({
+            //    toolbar: 'newdocument, undo, redo, visualaid, cut, copy, paste, selectall, bold, italic, underline, strikethrough, subscript, superscript, removeformat, formats, link',
+            //    plugins: 'link'
+            //});
+            tinymce.init({
+                selector: '#editor'
             });
         });
     </script>

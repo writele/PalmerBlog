@@ -3,11 +3,8 @@
     ViewBag.Title = "Register";
 }
 
-<link href="~/Content/blog.css" rel="stylesheet" />
-
 <h2 class="page-header">@ViewBag.Title.</h2>
 
-<div class="col-md-8">
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -38,7 +35,6 @@
         </div>
     </div>
 }
-</div>
 
 
 @section Scripts {

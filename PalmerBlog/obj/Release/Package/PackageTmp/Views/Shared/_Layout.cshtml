@@ -30,21 +30,15 @@
                     <li class="blog-title-link">
                         @Html.ActionLink("Blog", "Index", "Posts")
                     </li>
+                    <br />
+                    <br />
+                    <br />
                     <li>
-                        @Html.ActionLink("Categories", "Index", "Categories", new { @class = "subtitle" })
-                        <ul>
-                            <li>
-                                <span><a href="#">Front-End Development</a></span>
-                                <span><a href="#">Data Analysis</a></span>
-                                <span><a href="#">Jobs and Careers</a></span>
-                                <span><a href="#">Javascript</a></span>
-                                <span><a href="#">WordPress</a></span>
-                                <span><a href="#">User Experience</a></span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Search</a>
+                        @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+                        {
+                            <input type="text" name="query" class="search" value="@ViewBag.Query" />
+                            <input type="submit" class="search" value="&#xe003" />
+                        }
                     </li>
                     <li>
                         @Html.ActionLink("About", "Index", "Home")
@@ -66,21 +60,13 @@
                 <li class="blog-title-link">
                     @Html.ActionLink("Blog", "Index", "Posts")
                 </li>
+                <br /> <br /> <br />
                 <li>
-                    @Html.ActionLink("Categories", "Index", "Categories", new { @class = "subtitle" } )
-                    <ul>
-                        <li>
-                            <span><a href="#">Front-End Development</a></span>
-                            <span><a href="#">Data Analysis</a></span>
-                            <span><a href="#">Jobs and Careers</a></span>
-                            <span><a href="#">Javascript</a></span>
-                            <span><a href="#">WordPress</a></span>
-                            <span><a href="#">User Experience</a></span>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Search</a>
+                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+                    {
+                    <input type="text" name="query" class="search" value="@ViewBag.Query" />
+                    <input type="submit" class="search" value="&#xe003" />
+                    }
                 </li>
                 <li>
                     @Html.ActionLink("About", "Index", "Home")
@@ -95,17 +81,17 @@
             <div class="fluid-container">
 
                 @RenderBody()
-
-                <hr />
+            
+                
                 <div class="row" id="footer">
-                    <div class="col-md-12 text-center">
+                    <div class="text-center col-md-12">
+                        <hr>
                         <p class="copyright-text">&copy; @DateTime.Now.Year - Eleanor Palmer</p>
-                    </div>     
+                    </div>
                 </div>
 
             </div>
         </div>
-
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

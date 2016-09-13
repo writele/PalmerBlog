@@ -18,19 +18,6 @@ namespace PalmerBlog.Controllers
             return View();
         }
 
-        public ActionResult MyPage()
-        {
-            ViewBag.Message = "This is my page.";
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "";

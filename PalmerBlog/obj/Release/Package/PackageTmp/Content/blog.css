@@ -1,5 +1,6 @@
 ﻿.banner-overlay {
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: url("/Content/Images/notebook.jpg");
   opacity: .7;
 }
@@ -27,7 +28,6 @@
 
 .blog-content a {
     font-family: "Roboto", Arial, sans-serif;
-    font-size: 1.1em;
 }
 
 .blog-content p {
@@ -38,7 +38,7 @@ hr {
     margin-top: 0;
 }
 
-.action-link, input[type="submit"] {
+button.action-link, .action-link, input[type="submit"] {
     width: auto;
     border-radius: 0;
     border: none;
@@ -71,4 +71,55 @@ hr {
 
 .black-text {
     color: #000 !important;
+}
+
+.comment-content {
+    margin-bottom: 10px;
+    border: 2px solid #DDDDDD;
+    padding: 10px;
+    font-family: "Roboto", Arial, sans-serif; 
+    font-size: 1.1em;
+}
+
+.comment-content-edit, .comment-btn-cancel {
+    display: none;
+}
+
+input[type="submit"].comment-btn, button.comment-btn {
+    font-family: "Roboto", Arial, sans-serif; 
+    font-size: 1.2em;
+    display: inline;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: auto;
+    border-radius: 0;
+    border: none;
+    background-color: #0B486B;
+    color: #fff;
+}
+
+.comment-btn-edit button.comment-btn {
+    margin-bottom: 0;
+}
+input[type="submit"].comment-btn:hover, button.comment-btn:hover {
+    background-color: #6294B1;
+    color: #fff;
+}
+
+.technologies {
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+}
+.technologies img {   
+    margin-top: 20px;
+}
+
+i {
+    margin-right: 5px;
+}
+
+button.repo-btn {
+    display: inline-block;
+    margin-top: 30px;
 }
